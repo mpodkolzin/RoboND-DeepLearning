@@ -53,7 +53,8 @@ using the encoder blocks.
 
 3. 1x1 conv layer. 
 
-**[Rev1]** Difference between 1x1 convolution and fully connected layer
+**[Rev1]** 
+##### Difference between 1x1 convolution and fully connected layer
 This layer extracts non linear features for each pixel in a
 layer, and acts basically like FCN (fully connected network) for each pixel. Like in the encoder layers, the weight sharing gives allot of pixels for our network to train on no matter where on the image they reside. In other words difference is that the 1x1 convolution layer preserves spatial
 information as opposed to a fully connected layer. Since spatial information is lost it makes network not usable for pixel-wise classification
