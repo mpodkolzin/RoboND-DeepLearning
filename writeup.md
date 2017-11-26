@@ -2,10 +2,7 @@
 
 ### Environment:
 
-For this project I decided to build my own GPU platform to experiment with.
-Besides my main graphic card, I got extra NVIDIA GTX980 
-setting up cuda on Ubuntu 14.04 deserves separate writeup:), but once i got it working, I gained 
-more than x10 boost in calculation speed.
+For this project I decided to build my own GPU platform to experiment with. Besides my main graphic card, I got extra NVIDIA GTX980. Setting up CUDA on Ubuntu 14.04 deserves a separate writeup:), but once i got it working, I gained more than x10 boost in calculation speed.
 
 [gtx]:./images/GTX.jpg
 ![gpu][gtx]
@@ -24,13 +21,12 @@ Layer sizing is shown on the pictures below
 ![nn 1][2lnn]
 
 
-
 ##### 3-Layer deep architecture
 
 ![nn 2][3lnn]
 
 
-**For some reasons 2-layer fcn produces much better results, on some runs score went up to 44%, whereas 3-level network gave at most 39%. I suppose I just did not do enough tuning, and dataset was not large enough.**
+**For some reasons 2-layer FCN produced much better results, on some runs score went up to 44%, whereas 3-layer network gave at most 39%. I suppose I just did not do enough tuning, and dataset was not large enough.**
 **Submitted score is: 0.417897433983**
 
 ### Project components
@@ -59,10 +55,10 @@ layer, and acts basically like FCN (fully connected networn) for each pixel. Lik
 sharing gives allot of pixels for our network to train on no matter where on the image
 they reside. The 1x1 convolution layer is built using conv2d_batchnorm with the following
 inputs:
-    * a. input_layer – the input which is just the previous layer
-    * b. filters – number of features to extract
-    * c. kernel_size – set to 1
-    * d. strides – set to 1
+  * a. input_layer – the input which is just the previous layer
+  * b. filters – number of features to extract
+  * c. kernel_size – set to 1
+  * d. strides – set to 1
 
 4. output layer:
 Output layer does the final classification for each pixel to the appropriate class. This is a 1x1
@@ -102,7 +98,7 @@ When experimenting with different network architectures I set number of epochs t
 
 The steps per epoch is the number of training batches which are passed though network in 1 epoch. There is no need to put every image through the network in every epoch and not putting everything in every time also helps with overfitting.
 
-I ended up with 100 steps per epoch
+I ended up with 130 steps per epoch
 
 #### Validation Steps
 
@@ -110,13 +106,12 @@ Number of validation batches which pass the network in 1 epoch. This is the same
 
 I ended up with 50 validation steps
 
-The tuning was a kind of educated brute-force. I started with the default parameters and kept adjusting the learning rate. I then tried various epochs and started varying the steps per epoch. My best score to date is 0.444166837977% score using only the provided training images.
-
 
 ### Future Enhancements
 
 There are many possible ways to improve the results, here are some examples
 
-1. Use more layers in Decoder and Encoder, make net deeper or try different architectures.
-2. Use bigger dataset, for example, using data augmentation.
-3. Try different optimizers for example Nadam.
+1. Use more layers in Decoder and Encoder, make the net deeper or try different architectures.
+2. It would be great to learn a way to "fail fast", so each experimentation attempt would not too long
+3. Use bigger dataset, for example, using data augmentation.
+4. Try different optimizers, e.g Nadam.
