@@ -2,6 +2,9 @@
 
 ### Environment:
 
+[gtx]:./images/GTX.jpg
+![gpu][gtx]
+
 For this project I decided to build my own GPU platform to experiment with.
 Besides my main graphic card, I got extra NVIDIA GTX980 
 setting up cuda on Ubuntu 14.04 deserves separate writeup:), but once i got it working, I gained 
@@ -9,16 +12,20 @@ more than x10 boost in calculation speed.
 
 ### Network architectures
 
-
-##### 2-Layer deep architecture
-
-##### 3-Layer deep architecture
-
 [2lnn]:./images/2_layers_nn.jpg
 [3lnn]:./images/3_layers_nn.jpg
 
-![alt text][2lnn]
-![alt text][3lnn]
+##### 2-Layer deep architecture
+
+In this project I experimented with 2 neural network architectures: 2-layer (2 encoders + 2 decoders) and 3-layer (3 encoders + 3 decoders);
+Layer sizing is shown on the pictures below
+
+![nn 1][2lnn]
+
+
+##### 3-Layer deep architecture
+
+![nn 2][3lnn]
 
 
 ### Project components
