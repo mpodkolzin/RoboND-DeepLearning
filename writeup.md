@@ -2,13 +2,14 @@
 
 ### Environment:
 
-[gtx]:./images/GTX.jpg
-![gpu][gtx]
-
 For this project I decided to build my own GPU platform to experiment with.
 Besides my main graphic card, I got extra NVIDIA GTX980 
 setting up cuda on Ubuntu 14.04 deserves separate writeup:), but once i got it working, I gained 
 more than x10 boost in calculation speed.
+
+[gtx]:./images/GTX.jpg
+![gpu][gtx]
+
 
 ### Network architectures
 
@@ -23,10 +24,14 @@ Layer sizing is shown on the pictures below
 ![nn 1][2lnn]
 
 
+
 ##### 3-Layer deep architecture
 
 ![nn 2][3lnn]
 
+
+**For some reasons 2-layer fcn produces much better results, on some runs score went up to 44%, whereas 3-level network gave at most 39%. I suppose I just did not do enough tuning, and dataset was not large enough.**
+**Submitted score is: 0.417897433983**
 
 ### Project components
 
@@ -34,18 +39,18 @@ Layer sizing is shown on the pictures below
 Function builds a convolution layer. This layer is learning learn features with spatial
 information by sliding at a window with a certain kernel size. 
 
-a. input_layer - input from previous layer 
-b. filters – amount of features that will be extracted 
-c. strides – number of strides step we slide the window.
+  * a. input_layer - input from previous layer 
+  * b. filters – amount of features that will be extracted 
+  * c. strides – number of strides step we slide the window.
 
 2. decoder_block(small_ip_layer, large_ip_layer, filters):
 This is essentially a reverse of the encoder layer. The purpose of this layer is to
 upscale the image back to its original size and extract the encoded information the net found
 using the encoder blocks. 
 
-a. small_ip_layer – input from the previous layer
-b. large_ip_layer – the skip layer
-c. filters – amount of features that are extracted
+  * a. small_ip_layer – input from the previous layer
+  * b. large_ip_layer – the skip layer
+  * c. filters – amount of features that are extracted
 
 
 3. 1x1 conv layer. 
@@ -54,10 +59,10 @@ layer, and acts basically like FCN (fully connected networn) for each pixel. Lik
 sharing gives allot of pixels for our network to train on no matter where on the image
 they reside. The 1x1 convolution layer is built using conv2d_batchnorm with the following
 inputs:
-    a. input_layer – the input which is just the previous layer
-    b. filters – number of features to extract
-    c. kernel_size – set to 1
-    d. strides – set to 1
+    * a. input_layer – the input which is just the previous layer
+    * b. filters – number of features to extract
+    * c. kernel_size – set to 1
+    * d. strides – set to 1
 
 4. output layer:
 Output layer does the final classification for each pixel to the appropriate class. This is a 1x1
@@ -75,11 +80,11 @@ The Hyperparameters of this FCN are:
 * Steps per Epoch
 * Validation Steps
 
-##### Learning Rate
+#### Learning Rate
 
-The value used by NN to determine how quickly the weights are adjusted.I experimented with values between 0,01 and 0,0001. Otherwise to much instability is introduced into the network.
+The value used by NN to determine how quickly the weights are adjusted.I experimented with values between 0,01 and 0,00001. Otherwise to much instability is introduced into the network.
 
-I ended up with a learning rate of 0,005
+I ended up with a learning rate of 0,0005
 
 #### Batch Size
 
