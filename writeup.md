@@ -14,6 +14,11 @@ more than x10 boost in calculation speed.
 
 ##### 3-Layer deep architecture
 
+[2lnn](images/2_layer_nn.jpg)
+[3lnn](images/2_layer_nn.jpg)
+
+![alt text][2lnn]
+![alt text][3lnn]
 
 
 ### Project components
